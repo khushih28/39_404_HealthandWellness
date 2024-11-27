@@ -3,18 +3,23 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import tensorflow as tf
+import cohere  # Import the Cohere API
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Load the pre-trained model and dataset scaler
-model = tf.keras.models.load_model(r'C:\Users\khush\OneDrive\Desktop\ML Hackathon\model.h5')
-data_path = r'C:\Users\khush\OneDrive\Desktop\ML Hackathon\dyslexia_dataset_with_real_names (1).csv'
+model = tf.keras.models.load_model(r'model.h5')
+data_path = r'dyslexia_dataset_with_real_names (1).csv'
 
 # Fit the scaler with the dataset
 df = pd.read_csv(data_path)
 scaler = StandardScaler()
 scaler.fit(df.drop(columns=["Target"]))  # Assuming "Target" is the column with the label
+
+# Initialize Cohere API
+cohere_api_key = 'XYZ'  # Replace with your actual API key
+co = cohere.Client(cohere_api_key)
 
 @app.route('/')
 def index():
@@ -51,10 +56,21 @@ def predict():
         prob_dyslexia = probabilities[0][0]  # Assuming the model outputs a single probability
         is_dyslexic = "Dyslexic" if prob_dyslexia > 0.5 else "Not Dyslexic"
 
-        # Return prediction results
+        # Use Cohere to generate precautions based on the dyslexia probability
+        prompt = f"The model has predicted a dyslexia probability of {prob_dyslexia:.2f}. Based on this level of dyslexia, suggest appropriate precautions and next steps."
+        cohere_response = co.generate(
+            model='command-xlarge-2021-11-22',  # Use an appropriate Cohere model
+            prompt=prompt,
+            max_tokens=1000,
+            temperature=0.7
+        )
+        precautions = cohere_response.generations[0].text.strip()
+
+        # Return prediction and Cohere response
         result = {
             "probability": f"{prob_dyslexia:.2f}",
             "classification": is_dyslexic,
+            "precautions": precautions
         }
         return jsonify(result)
 
