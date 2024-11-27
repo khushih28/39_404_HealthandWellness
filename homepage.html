@@ -1,0 +1,198 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DYSCOVER</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    </head>
+    <body>
+        <section class="header"> 
+            <nav>
+                <div class="logo-container">
+                    <a href="home.html"><img src="betterlogo.jpeg" alt="WIE Logo" class="logo"></a>
+                </div>
+                
+                <div class="nav-links" id="navlinks">
+                    <i class="fa fa-times" onclick="hidemenu()"></i>
+                    <ul>
+                        <li><b><a href="http://127.0.0.1:5500/home.html">HOME</a></b></li> 
+                        <li><b><a href="http://127.0.0.1:5500/Flagship.html">Blogs</a></b></li>
+                        <li><b><a href="http://127.0.0.1:5500/The%20team.html">Help</a></b></li>
+                        <li><b><a href="http://127.0.0.1:5500/about.html">ABOUT US</a></b></li>
+                        
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showmenu()"></i>
+            </nav>
+            <div class="text-box">
+                <h1>What is Dyslexia?</h1>
+                <p><b>Dyslexia is a learning disorder characterized by difficulties in reading, spelling, and writing, despite normal intelligence and educational opportunities. 
+                    It is a neurological condition that affects the way the brain processes written and spoken language. 
+                    Dyslexia is not related to vision problems but rather how the brain interprets symbols and sounds.With the right support, including tailored teaching methods, assistive technologies, and a positive learning environment, 
+                    people with dyslexia can achieve their full potential and thrive in various domains of life.
+                </b>
+                </p>
+
+            </div>
+        </section>
+        <div class="volunteer-header">
+            <h2>Early Detection Dyslexia</h2>
+        </div>
+        
+        
+        
+        <section class="fleets">
+            <div class="fleets-container">
+                <!-- Left: Video Section -->
+                <div class="video-container">
+                    <a href="home.html"><img src="{{ url_for('static', filename='images/betterlogo.jpeg') }}" alt="WIE Logo" class="logo"></a>
+
+
+                </div>
+        
+                <!-- Right: Text Section -->
+                <div class="text-content">
+                    <h1>Early Action</h1>
+                    <p>
+                        Early detection of dyslexia is essential for improving a child’s academic, social,
+                        and emotional well-being. When identified early, children can receive targeted interventions and specialized instruction tailored to their unique learning needs.
+                        This helps them develop foundational literacy skills such as decoding, reading fluency, and spelling, which are critical for academic success. Early intervention also prevents the widening of educational gaps, ensuring that children with dyslexia can keep pace with 
+                        their peers. Beyond academics, early detection fosters confidence and self-esteem by reducing the frustration and feelings of inadequacy that often accompany undiagnosed learning difficulties. It allows children to focus on their strengths while receiving the support they need to overcome
+                        challenges, setting them up for long-term success both in and out of the classroom.
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="volunteer-header">
+            <h2>Take a Test</h2>
+        </div>
+        <form id="dyslexia-form" action="/predict" method="POST">
+            <div class="question">
+            
+                <p>1.What is the age Group of the person?</p>
+                <label><input type="radio" name="Age_Group" value="1" required> Child</label>
+                <label><input type="radio" name="Age_Group" value="0"> Adult</label>
+            </div>
+        <div class="question">
+            
+            <p>2. Does the person have trouble reading smoothly and often guess or skip words?</p>
+            <label><input type="radio" name="Reading_Trouble" value="1" required> Yes</label>
+            <label><input type="radio" name="Reading_Trouble" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>3. Is spelling difficult, with mistakes like mixing up or leaving out letters?</p>
+            <label><input type="radio" name="Spelling_Trouble" value="1" required> Yes</label>
+            <label><input type="radio" name="Spelling_Trouble" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>4. Do they read much slower than others their age?</p>
+            <label><input type="radio" name="Slow_Reading" value="1" required> Yes</label>
+            <label><input type="radio" name="Slow_Reading" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>5. Is it hard for them to match letters with their sounds (like "b" with the "buh" sound)?</p>
+            <label><input type="radio" name="Phonetics_Trouble" value="1" required> Yes</label>
+            <label><input type="radio" name="Phonetics_Trouble" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>6. Do they forget things in order, like the alphabet or days of the week?</p>
+            <label><input type="radio" name="Memory_Problems" value="1" required> Yes</label>
+            <label><input type="radio" name="Memory_Problems" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>7. Do they confuse directions (like left and right) or mix up similar letters (like "b" and "d")?</p>
+            <label><input type="radio" name="Direct_Confusion" value="1" required> Yes</label>
+            <label><input type="radio" name="Direct_Confusion" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>8. Do they avoid reading or writing because it feels too hard?</p>
+            <label><input type="radio" name="Reading_Avoidance" value="1" required> Yes</label>
+            <label><input type="radio" name="Reading_Avoidance" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>9. Do they say words wrong often or struggle with rhyming?</p>
+            <label><input type="radio" name="Speech_Trouble" value="1" required> Yes</label>
+            <label><input type="radio" name="Speech_Trouble" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>10. Is there someone else in the family with learning or reading problems?</p>
+            <label><input type="radio" name="Family_History" value="1" required> Yes</label>
+            <label><input type="radio" name="Family_History" value="0"> No</label>
+        </div>
+
+        <div class="question">
+            <p>11. Do they get upset or lose confidence when it comes to reading or writing?</p>
+            <label><input type="radio" name="Emotional_Impact" value="1" required> Yes</label>
+            <label><input type="radio" name="Emotional_Impact" value="0"> No</label>
+        </div>
+
+        <button type="submit">Submit</button>
+        
+    </div>
+    </form>
+        <!-- Goals Section with animation -->
+    <div id ="result">
+
+        <!-- Footer with hover effects -->
+        <section class="footer">
+            <div class="footer-links">
+                <a href="https://www.instagram.com/bmsce_wie/" target="_blank" aria-label="Instagram" class="social-link">
+                    <i class="fab fa-instagram"></i> DYSCOVER
+                </a>
+                <a href="https://www.linkedin.com/company/bmsce-ieee-wie/posts/?feedView=all" target="_blank" aria-label="LinkedIn" class="social-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:dycover@gmail.com" aria-label="Email" class="social-link">
+                    <i class="fa fa-envelope"></i> DYSCOVER
+                </a>
+            </div>
+            <p class="footer-copy">© 2024 DYSCOVER. All Rights Reserved.</p>
+        </section>
+
+        <!-- JavaScript for menu toggle -->
+        <script>
+            function showmenu() {
+                document.getElementById("navlinks").style.right = "0";
+            }
+            function hidemenu() {
+                document.getElementById("navlinks").style.right = "-200px";
+            }
+            
+            document.getElementById("dyslexia-form").addEventListener("submit", async function (e) {
+                    e.preventDefault();
+                
+                    const formData = new FormData(this);
+                
+                    const response = await fetch("/predict", {
+                        method: "POST",
+                        body: formData,
+                    });
+                
+                    const result = await response.json();
+                    document.getElementById("result").innerHTML = `
+                        <h3>Prediction Result</h3>
+                        <p>Probability of Dyslexia: ${result.probability}</p>
+                        <p>Classification: ${result.classification}</p>
+                        <p>Precautions: ${result.precautions}</p>
+                    `;
+                });
+                    
+                
+
+        </script>
+    </body>
+    </html>
